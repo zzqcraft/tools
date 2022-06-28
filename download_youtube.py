@@ -3,6 +3,7 @@
 from pytube import YouTube
 import os
 import subprocess
+import distutils.spawn
   
 # url input from user
 yt = YouTube(
@@ -23,7 +24,7 @@ base, ext = os.path.splitext(out_file)
 saved_location = base + ext
 
 # convert mp4 file to mp3 if ffmpeg is available
-if distutils.spawn.find_executable("ffmpeg") not None:  
+if distutils.spawn.find_executable("ffmpeg") is not None:  
   new_file = base + '.mp3'
   subprocess.run([
       'ffmpeg',
