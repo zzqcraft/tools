@@ -20,20 +20,19 @@ out_file = video.download(output_path=destination)
   
 # save the file
 base, ext = os.path.splitext(out_file)
-new_file = base + '.mp3'
+saved_location = base + ext
 
-default_filename = base + ext
-
-print(new_file)
-print(default_filename)
-subprocess.run([
-    'ffmpeg',
-    '-i', default_filename,
-    new_file
-])
-
-# remove mp4 format
-os.remove(default_filename)
+# convert mp4 file to mp3 if ffmpeg is available
+if distutils.spawn.find_executable("ffmpeg") not None:  
+  new_file = base + '.mp3'
+  subprocess.run([
+      'ffmpeg',
+      '-i', saved_location,
+      new_file
+  ])
+  # remove mp4 format
+  os.remove(saved_location)
+  saved_location = new_file
   
 # result of success
-print(yt.title + " has been successfully downloaded.")
+print(yt.title + " has been successfully downloaded to " + saved_location)
