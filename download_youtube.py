@@ -18,8 +18,6 @@ destination = str(input(">> ")) or '.'
   
 # download the file
 out_file = video.download(output_path=destination)
-  
-# save the file
 base, ext = os.path.splitext(out_file)
 saved_location = base + ext
 
