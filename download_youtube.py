@@ -9,7 +9,7 @@ import distutils.spawn
 yt = YouTube(
   str(input("Enter the URL of the video you want to download: \n>> ")))
   
-# extract only audio
+# extract only audio with highest quality
 video = yt.streams.get_audio_only()
   
 # check for destination to save file
